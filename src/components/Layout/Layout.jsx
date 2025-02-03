@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/auth/authActions";
 
 export const Layout = () => {
@@ -29,6 +29,10 @@ export const Layout = () => {
           Logout
         </button>
       </header>
+
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };
