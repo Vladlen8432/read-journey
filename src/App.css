@@ -1,0 +1,25 @@
+.appContainer {
+  max-width: 100%;
+  padding: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 375px) {
+  .appContainer {
+    width: 375px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .appContainer {
+    padding: 32px;
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .appContainer {
+    width: 1440px;
+  }
+}
