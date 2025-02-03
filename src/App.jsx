@@ -8,7 +8,7 @@ import MyLibraryPage from "./pages/MyLibraryPage";
 
 const App = () => {
   return (
-    <div>
+    <div className="appContainer">
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

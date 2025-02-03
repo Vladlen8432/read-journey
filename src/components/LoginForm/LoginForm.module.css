@@ -1,0 +1,66 @@
+.loginContainer {
+  padding: 20px 20px 40px 20px;
+  background-color: #1f1f1f;
+  border-radius: 30px;
+}
+
+.loginHeader {
+  color: #f9f9f9;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin-top: 40px;
+}
+
+.highlighted {
+  color: rgba(227, 227, 227, 0.5);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-top: 20px;
+}
+
+.loginInput {
+  width: 100%;
+  background-color: #262626;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  color: #f9f9f9;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  outline: none;
+}
+
+.containerLoginBtn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 64px;
+}
+
+.loginBtn {
+  background-color: #f9f9f9;
+  color: #1f1f1f;
+  padding: 12px 45px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  letter-spacing: 0.02em;
+  border-radius: 30px;
+}
+
+.toRegisterLink {
+  color: #686868;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
+  text-decoration-line: underline;
+}
