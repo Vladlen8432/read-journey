@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { loginUser } from "../../services/api";
 import css from "./LoginForm.module.css";
@@ -10,6 +10,7 @@ import { MainLogoIcon } from "../Icons";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
+
   const schema = Yup.object({
     email: Yup.string()
       .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Невірний формат email")
@@ -42,13 +43,15 @@ export const LoginForm = () => {
 
   return (
     <div className={css.loginContainer}>
-      <ToastContainer />
-      <MainLogoIcon />
+      <div className={css.logoContainer}>
+        <MainLogoIcon />
+        <p className={css.logoText}>read journey</p>
+      </div>
 
-      <p className={css.loginHeader}>
+      <h1 className={css.loginHeader}>
         Expand your mind, reading{" "}
         <span className={css.highlighted}>a book</span>
-      </p>
+      </h1>
 
       <form className={css.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <div>

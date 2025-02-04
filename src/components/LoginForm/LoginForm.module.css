@@ -4,6 +4,10 @@
   border-radius: 30px;
 }
 
+.logoText {
+  display: none;
+}
+
 .loginHeader {
   color: #f9f9f9;
   font-size: 32px;
@@ -35,7 +39,10 @@
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: -0.02em;
-  outline: none;
+}
+
+.loginInput:focus {
+  outline: 1px solid rgba(249, 249, 249, 0.1);
 }
 
 .containerLoginBtn {
@@ -63,4 +70,60 @@
   line-height: 1.17;
   letter-spacing: -0.02em;
   text-decoration-line: underline;
+}
+
+@media screen and (min-width: 768px) {
+  .loginContainer {
+    padding: 40px 168px 214px 64px;
+  }
+
+  .logoContainer {
+    display: flex;
+    gap: 4px;
+  }
+
+  .logoText {
+    display: block;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .loginHeader {
+    margin-top: 158px;
+    font-size: 64px;
+    line-height: 0.94;
+    letter-spacing: 0.02em;
+  }
+
+  .loginForm {
+    margin-top: 40px;
+    row-gap: 14px;
+  }
+
+  .loginInput {
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+  }
+
+  .containerLoginBtn {
+    margin-top: 132px;
+  }
+
+  .loginBtn {
+    padding: 16px 54px;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .toRegisterLink {
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+  }
 }
