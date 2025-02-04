@@ -60,7 +60,15 @@
   font-weight: 700;
   line-height: 1.29;
   letter-spacing: 0.02em;
+  border: 1px solid #f9f9f9;
   border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.loginBtn:hover {
+  background-color: transparent;
+  color: #f9f9f9;
+  border: 1px solid rgba(249, 249, 249, 0.2);
 }
 
 .toRegisterLink {
@@ -70,6 +78,11 @@
   line-height: 1.17;
   letter-spacing: -0.02em;
   text-decoration-line: underline;
+  transition: all 0.3s ease;
+}
+
+.toRegisterLink:hover {
+  color: #f9f9f9;
 }
 
 @media screen and (min-width: 768px) {
