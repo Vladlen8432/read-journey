@@ -1,0 +1,23 @@
+.imageContainer {
+  position: relative;
+  background-color: #1f1f1f;
+  width: 100%;
+  height: 351px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.imageItem {
+  position: absolute;
+  bottom: -76px;
+  width: 255px;
+  height: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media screen and (min-width: 768px) {
+  .imageContainer {
+    display: none;
+  }
+}
