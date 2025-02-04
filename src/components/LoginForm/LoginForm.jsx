@@ -48,7 +48,7 @@ export const LoginForm = () => {
         <p className={css.logoText}>read journey</p>
       </div>
 
-      <h1 className={css.loginHeader}>
+      <h1 className={css.loginTitle}>
         Expand your mind, reading{" "}
         <span className={css.highlighted}>a book</span>
       </h1>

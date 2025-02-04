@@ -21,3 +21,17 @@
     display: none;
   }
 }
+
+@media screen and (min-width: 1440px) {
+    .imageContainer {
+      display: block;
+      width: 50%;
+      height: 746px;
+    }
+  
+    .imageItem {
+      width: 405px;
+      height: auto;
+      bottom: 0;
+    }
+  }
