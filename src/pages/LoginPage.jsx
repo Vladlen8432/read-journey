@@ -4,7 +4,7 @@ import "./styles.css";
 
 const LoginPage = () => {
   return (
-    <div className="loginPageContainer">
+    <div className="pageContainer">
       <LoginForm />
       <FormImage />
     </div>

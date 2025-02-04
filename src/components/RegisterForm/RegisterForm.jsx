@@ -1,232 +1,101 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
+
 import { registerUser } from "../../services/api";
-import { toast, ToastContainer } from "react-toastify";
+import css from "./RegisterForm.module.css";
+import { MainLogoIcon } from "../Icons";
 
 export const RegisterForm = () => {
   const navigate = useNavigate();
 
-  const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-  };
-
-  const validationSchema = Yup.object({
-    name: Yup.string().required("Обов'язкове поле"), // Перевірка для імені
+  const schema = Yup.object({
+    name: Yup.string().required("Обов'язкове поле"),
     email: Yup.string()
-      .email("Невірний формат email")
+      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Невірний формат email")
       .required("Обов'язкове поле"),
     password: Yup.string()
-      .min(6, "Мінімум 6 символів")
+      .min(7, "Мінімум 7 символів")
       .required("Обов'язкове поле"),
   });
 
-  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    try {
-      const data = await registerUser(values);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        toast.success("Реєстрація успішна! Ви автоматично авторизовані.");
+  const onSubmit = async (data) => {
+    try {
+      const response = await registerUser(data);
+      if (response.token) {
+        localStorage.setItem("token", response.token);
+        toast.success("Успішна реєстрація! Ви автоматично авторизовані.");
         navigate("/recommended");
       }
     } catch {
-      toast.error("Сталася помилка при реєстрації. Спробуйте ще раз.");
-      setErrors({ email: "Щось пішло не так, спробуйте ще раз." });
-    } finally {
-      setSubmitting(false);
+      toast.error("Помилка реєстрації. Спробуйте ще раз.");
     }
   };
 
   return (
-    <div className="register-container">
-      <ToastContainer />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form className="register-form">
-            <div>
-              <Field type="text" name="name" placeholder="Name" />
-              <ErrorMessage name="name" component="div" className="error" />
-            </div>
+    <div className={css.registerContainer}>
+      <div className={css.logoContainer}>
+        <MainLogoIcon />
+        <p className={css.logoText}>read journey</p>
+      </div>
 
-            <div>
-              <Field type="email" name="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
+      <h1 className={css.registerTitle}>
+        Expand your mind, reading{" "}
+        <span className={css.highlighted}>a book</span>
+      </h1>
 
-            <div>
-              <Field type="password" name="password" placeholder="Password" />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
+      <form className={css.registerForm} onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <input
+            className={css.registerInput}
+            type="text"
+            placeholder="Name:"
+            {...register("name")}
+          />
+          {errors.name && <div className="error">{errors.name.message}</div>}
+        </div>
 
-            <button type="submit" disabled={isSubmitting}>
-              Sign up
-            </button>
-            <NavLink to={"/login"}>Already have an account?</NavLink>
-          </Form>
-        )}
-      </Formik>
+        <div>
+          <input
+            className={css.registerInput}
+            type="email"
+            placeholder="Mail:"
+            {...register("email")}
+          />
+          {errors.email && <div className="error">{errors.email.message}</div>}
+        </div>
+
+        <div>
+          <input
+            className={css.registerInput}
+            type="password"
+            placeholder="Password:"
+            {...register("password")}
+          />
+          {errors.password && (
+            <div className="error">{errors.password.message}</div>
+          )}
+        </div>
+
+        <div className={css.containerRegisterBtn}>
+          <button className={css.registerBtn} type="submit">
+            Registration
+          </button>
+          <NavLink className={css.toLoginLink} to="/login">
+            Already have an account?
+          </NavLink>
+        </div>
+      </form>
     </div>
   );
 };
-
-// import { Formik, Form, Field, ErrorMessage } from "formik";
-// import { NavLink, useNavigate } from "react-router-dom";
-// import * as Yup from "yup";
-// import { registerUser } from "../../services/api";
-// import { toast, ToastContainer } from "react-toastify";
-
-// export const RegisterForm = () => {
-//   const navigate = useNavigate();
-
-//   const initialValues = {
-//     email: "",
-//     password: "",
-//     confirmPassword: "",
-//   };
-
-//   const validationSchema = Yup.object({
-//     email: Yup.string()
-//       .email("Невірний формат email")
-//       .required("Обов'язкове поле"),
-//     password: Yup.string()
-//       .min(6, "Мінімум 6 символів")
-//       .required("Обов'язкове поле"),
-//     confirmPassword: Yup.string()
-//       .oneOf([Yup.ref("password"), null], "Паролі повинні збігатися")
-//       .required("Обов'язкове поле"),
-//   });
-
-//   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-//     try {
-//       const data = await registerUser(values);
-
-//       if (data.token) {
-//         localStorage.setItem("token", data.token);
-//         toast.success("Реєстрація успішна! Ви автоматично авторизовані.");
-//         navigate("/recommended");
-//       }
-//     } catch {
-//       toast.error("Сталася помилка при реєстрації. Спробуйте ще раз.");
-//       setErrors({ email: "Щось пішло не так, спробуйте ще раз." });
-//     } finally {
-//       setSubmitting(false);
-//     }
-//   };
-
-//   return (
-//     <div className="register-container">
-//       <ToastContainer />
-//       <Formik
-//         initialValues={initialValues}
-//         validationSchema={validationSchema}
-//         onSubmit={handleSubmit}
-//       >
-//         {({ isSubmitting }) => (
-//           <Form className="register-form">
-//             <div>
-//               <Field type="email" name="email" />
-//               <ErrorMessage name="email" component="div" className="error" />
-//             </div>
-
-//             <div>
-//               <Field type="password" name="password" />
-//               <ErrorMessage name="password" component="div" className="error" />
-//             </div>
-
-//             <div>
-//               <Field type="password" name="confirmPassword" />
-//               <ErrorMessage
-//                 name="confirmPassword"
-//                 component="div"
-//                 className="error"
-//               />
-//             </div>
-
-//             <button type="submit" disabled={isSubmitting}>
-//               Sign up
-//             </button>
-//             <NavLink to={"/login"}>Already have an account?</NavLink>
-//           </Form>
-//         )}
-//       </Formik>
-//     </div>
-//   );
-// };
-
-// import { Formik, Form, Field, ErrorMessage } from "formik";
-// import { NavLink } from "react-router-dom";
-// import * as Yup from "yup";
-
-// const RegisterForm = () => {
-//   const initialValues = {
-//     email: "",
-//     password: "",
-//     confirmPassword: "",
-//   };
-
-//   const validationSchema = Yup.object({
-//     email: Yup.string()
-//       .email("Невірний формат email")
-//       .required("Обов'язкове поле"),
-//     password: Yup.string()
-//       .min(6, "Мінімум 6 символів")
-//       .required("Обов'язкове поле"),
-//     confirmPassword: Yup.string()
-//       .oneOf([Yup.ref("password"), null], "Паролі повинні збігатися")
-//       .required("Обов'язкове поле"),
-//   });
-
-//   const handleSubmit = (values, { setSubmitting }) => {
-//     console.log("Реєстрація: ", values);
-//     setTimeout(() => {
-//       setSubmitting(false);
-//     }, 1000);
-//   };
-
-//   return (
-//     <div className="register-container">
-//       <Formik
-//         initialValues={initialValues}
-//         validationSchema={validationSchema}
-//         onSubmit={handleSubmit}
-//       >
-//         {({ isSubmitting }) => (
-//           <Form className="register-form">
-//             <div>
-//               <Field type="email" name="email" />
-//               <ErrorMessage name="email" component="div" className="error" />
-//             </div>
-
-//             <div>
-//               <Field type="password" name="password" />
-//               <ErrorMessage name="password" component="div" className="error" />
-//             </div>
-
-//             <div>
-//               <Field type="password" name="confirmPassword" />
-//               <ErrorMessage
-//                 name="confirmPassword"
-//                 component="div"
-//                 className="error"
-//               />
-//             </div>
-
-//             <button type="submit" disabled={isSubmitting}>
-//               Sign up
-//             </button>
-//             <NavLink to={"/login"}>Already have an account?</NavLink>
-//           </Form>
-//         )}
-//       </Formik>
-//     </div>
-//   );
-// };
-
-// export default RegisterForm;

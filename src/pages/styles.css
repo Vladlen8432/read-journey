@@ -1,12 +1,12 @@
-.loginPageContainer {
+.pageContainer {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
 }
 
 @media screen and (min-width: 1440px) {
-    .loginPageContainer {
-        flex-direction: row;
-        column-gap: 16px;
-      }
+  .pageContainer {
+    flex-direction: row;
+    column-gap: 16px;
+  }
 }

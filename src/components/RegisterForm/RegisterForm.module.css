@@ -1,0 +1,86 @@
+.registerContainer {
+  padding: 20px 20px 40px 20px;
+  background-color: #1f1f1f;
+  border-radius: 30px;
+}
+
+.logoText {
+  display: none;
+}
+
+.registerTitle {
+  color: #f9f9f9;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin-top: 40px;
+}
+
+.highlighted {
+  color: rgba(227, 227, 227, 0.5);
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-top: 20px;
+}
+
+.registerInput {
+  width: 100%;
+  background-color: #262626;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  color: #f9f9f9;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+}
+
+.registerInput:focus {
+  outline: 1px solid rgba(249, 249, 249, 0.1);
+}
+
+.containerRegisterBtn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.registerBtn {
+  background-color: #f9f9f9;
+  color: #1f1f1f;
+  padding: 12px 27px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  letter-spacing: 0.02em;
+  border: 1px solid #f9f9f9;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.registerBtn:hover {
+  background-color: transparent;
+  color: #f9f9f9;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+}
+
+.toLoginLink {
+  color: #686868;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
+  text-decoration-line: underline;
+  transition: all 0.3s ease;
+}
+
+.toLoginLink:hover {
+  color: #f9f9f9;
+}
