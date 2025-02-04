@@ -84,3 +84,59 @@
 .toLoginLink:hover {
   color: #f9f9f9;
 }
+
+@media screen and (min-width: 768px) {
+  .registerContainer {
+    padding: 40px 168px 214px 64px;
+  }
+
+  .logoContainer {
+    display: flex;
+    gap: 4px;
+  }
+
+  .logoText {
+    display: block;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .registerTitle {
+    margin-top: 158px;
+    font-size: 64px;
+    line-height: 0.94;
+    letter-spacing: 0.02em;
+  }
+
+  .registerForm {
+    margin-top: 40px;
+    row-gap: 14px;
+  }
+
+  .registerInput {
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+  }
+
+  .containerRegisterBtn {
+    margin-top: 132px;
+  }
+
+  .registerBtn {
+    padding: 16px 54px;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .toLoginLink {
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+  }
+}
