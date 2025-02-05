@@ -1,0 +1,138 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f1f;
+  border-radius: 15px;
+  padding: 11px 20px;
+}
+
+.containerLine {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.mainLogoText,
+.nav,
+.userName,
+.buttonLogout {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    justify-content: flex-start;
+    padding: 16px;
+  }
+
+  .nav {
+    display: block;
+    margin-left: 223px;
+  }
+
+  .navList {
+    display: flex;
+    gap: 32px;
+  }
+
+  .navItem {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.13;
+    letter-spacing: -0.02em;
+  }
+
+  .navLink {
+    color: inherit;
+  }
+
+  .active {
+    color: #f9f9f9;
+    border-bottom: 3px solid #4f92f7;
+    padding-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .containerLine {
+    margin-left: auto;
+  }
+
+  .userAvatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .buttonLogout {
+    display: block;
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    padding: 12px 28px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    line-height: 1.13;
+    letter-spacing: 0.02em;
+  }
+
+  .buttonLogout:hover {
+    background-color: #f9f9f9;
+    border: 1px solid #f9f9f9;
+    color: #1f1f1f;
+  }
+
+  .buttonBurger {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .containerMainLogo {
+    display: flex;
+    gap: 4px;
+  }
+
+  .mainLogoText {
+    display: block;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .nav {
+    margin-left: 334px;
+  }
+
+  .navList {
+    gap: 40px;
+  }
+
+  .containerUserInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .userName {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.13;
+    letter-spacing: -0.02em;
+  }
+
+  .buttonLogout {
+    margin-left: 16px;
+  }
+}
