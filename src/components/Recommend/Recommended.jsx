@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Dashboard from "../Dashboard/Dashboard";
 
 const Recommended = () => {
   const navigate = useNavigate();
@@ -10,7 +11,10 @@ const Recommended = () => {
       navigate("/login");
     }
   }, [navigate]);
-  return <div>Recommended</div>;
+  return <div>
+    <Dashboard/>
+    Recommended
+    </div>;
 };
 
 export default Recommended;
