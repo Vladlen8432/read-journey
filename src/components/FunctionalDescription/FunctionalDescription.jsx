@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+import { ArrowIcon } from "../Icons";
 import css from "./FunctionalDescription.module.css";
 
 const FunctionalDescription = () => {
@@ -26,6 +28,13 @@ const FunctionalDescription = () => {
           </p>
         </li>
       </ul>
+
+      <div className={css.toLibraryContainer}>
+        <p className={css.toLibraryText}>My library</p>
+        <NavLink to={"/library"}>
+          <ArrowIcon />
+        </NavLink>
+      </div>
     </div>
   );
 };

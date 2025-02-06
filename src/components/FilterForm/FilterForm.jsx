@@ -12,7 +12,6 @@ export const FilterSchema = Yup.object().shape({
 export const FilterForm = ({ onFilter }) => {
   return (
     <Formik
-      className={css.filterForm}
       initialValues={{ title: "", author: "" }}
       validationSchema={FilterSchema}
       onSubmit={(values) => {
@@ -20,8 +19,8 @@ export const FilterForm = ({ onFilter }) => {
       }}
     >
       {({ handleSubmit }) => (
-        <Form onSubmit={handleSubmit}>
-          <p className={css.filter}>Filter:</p>
+        <Form className={css.filterForm} onSubmit={handleSubmit}>
+           <p className={css.filter}>Filter:</p>
           <label>
             <Field
               className={css.input}
