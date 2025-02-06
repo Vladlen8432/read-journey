@@ -1,7 +1,6 @@
-import { useForm } from "react-hook-form";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { NavLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 
 import { registerUser } from "../../services/api";
@@ -14,24 +13,16 @@ export const RegisterForm = () => {
   const schema = Yup.object({
     name: Yup.string().required("Обов'язкове поле"),
     email: Yup.string()
-      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Невірний формат email")
+      .matches(/^[\w.-]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Невірний формат email")
       .required("Обов'язкове поле"),
     password: Yup.string()
       .min(7, "Мінімум 7 символів")
       .required("Обов'язкове поле"),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const onSubmit = async (data) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await registerUser(data);
+      const response = await registerUser(values);
       if (response.token) {
         localStorage.setItem("token", response.token);
         toast.success("Успішна реєстрація! Ви автоматично авторизовані.");
@@ -39,6 +30,8 @@ export const RegisterForm = () => {
       }
     } catch {
       toast.error("Помилка реєстрації. Спробуйте ще раз.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -54,48 +47,58 @@ export const RegisterForm = () => {
         <span className={css.highlighted}>a book</span>
       </h1>
 
-      <form className={css.registerForm} onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input
-            className={css.registerInput}
-            type="text"
-            placeholder="Name:"
-            {...register("name")}
-          />
-          {errors.name && <div className="error">{errors.name.message}</div>}
-        </div>
+      <Formik
+        initialValues={{ name: "", email: "", password: "" }}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form className={css.registerForm}>
+            <div>
+              <Field
+                className={css.registerInput}
+                type="text"
+                name="name"
+                placeholder="Name:"
+              />
+              <ErrorMessage className="error" name="name" component="div" />
+            </div>
 
-        <div>
-          <input
-            className={css.registerInput}
-            type="email"
-            placeholder="Mail:"
-            {...register("email")}
-          />
-          {errors.email && <div className="error">{errors.email.message}</div>}
-        </div>
+            <div>
+              <Field
+                className={css.registerInput}
+                type="email"
+                name="email"
+                placeholder="Mail:"
+              />
+              <ErrorMessage className="error" name="email" component="div" />
+            </div>
 
-        <div>
-          <input
-            className={css.registerInput}
-            type="password"
-            placeholder="Password:"
-            {...register("password")}
-          />
-          {errors.password && (
-            <div className="error">{errors.password.message}</div>
-          )}
-        </div>
+            <div>
+              <Field
+                className={css.registerInput}
+                type="password"
+                name="password"
+                placeholder="Password:"
+              />
+              <ErrorMessage className="error" name="password" component="div" />
+            </div>
 
-        <div className={css.containerRegisterBtn}>
-          <button className={css.registerBtn} type="submit">
-            Registration
-          </button>
-          <NavLink className={css.toLoginLink} to="/login">
-            Already have an account?
-          </NavLink>
-        </div>
-      </form>
+            <div className={css.containerRegisterBtn}>
+              <button
+                className={css.registerBtn}
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Registering..." : "Registration"}
+              </button>
+              <NavLink className={css.toLoginLink} to="/login">
+                Already have an account?
+              </NavLink>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

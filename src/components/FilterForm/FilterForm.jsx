@@ -20,7 +20,7 @@ export const FilterForm = ({ onFilter }) => {
     >
       {({ handleSubmit }) => (
         <Form className={css.filterForm} onSubmit={handleSubmit}>
-           <p className={css.filter}>Filter:</p>
+          <p className={css.filter}>Filter:</p>
           <label>
             <Field
               className={css.input}
