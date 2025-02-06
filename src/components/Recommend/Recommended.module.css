@@ -1,0 +1,6 @@
+@media screen and (min-width: 1440px) {
+  .containerHome {
+    display: flex;
+    margin-top: 16px;
+  }
+}

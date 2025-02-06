@@ -13,3 +13,12 @@
     margin-top: 16px;
   }
 }
+
+@media screen and (min-width: 1440px) {
+  .containerDashboard {
+    flex-direction: column;
+    margin-top: 0;
+    row-gap: 20px;
+    width: 353px;
+  }
+}
