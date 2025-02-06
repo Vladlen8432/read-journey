@@ -1,36 +1,27 @@
-import { useForm } from "react-hook-form";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { NavLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 
 import { loginUser } from "../../services/api";
 import css from "./LoginForm.module.css";
 import { MainLogoIcon } from "../Icons";
 
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .matches(/^[\w.-]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Невірний формат email")
+    .required("Обов'язкове поле"),
+  password: Yup.string()
+    .min(7, "Мінімум 7 символів")
+    .required("Обов'язкове поле"),
+});
+
 export const LoginForm = () => {
   const navigate = useNavigate();
 
-  const schema = Yup.object({
-    email: Yup.string()
-      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Невірний формат email")
-      .required("Обов'язкове поле"),
-    password: Yup.string()
-      .min(7, "Мінімум 7 символів")
-      .required("Обов'язкове поле"),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const onSubmit = async (data) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await loginUser(data);
+      const response = await loginUser(values);
       if (response.token) {
         localStorage.setItem("token", response.token);
         toast.success("Успішний вхід! Ви автоматично авторизовані.");
@@ -39,6 +30,7 @@ export const LoginForm = () => {
     } catch {
       toast.error("Невірний email або пароль.");
     }
+    setSubmitting(false);
   };
 
   return (
@@ -53,38 +45,48 @@ export const LoginForm = () => {
         <span className={css.highlighted}>a book</span>
       </h1>
 
-      <form className={css.loginForm} onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input
-            className={css.loginInput}
-            type="email"
-            placeholder="Mail:"
-            {...register("email")}
-          />
-          {errors.email && <div className="error">{errors.email.message}</div>}
-        </div>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form className={css.loginForm}>
+            <div>
+              <Field
+                className={css.loginInput}
+                type="email"
+                name="email"
+                placeholder="Mail:"
+              />
+              <ErrorMessage name="email" component="div" className="error" />
+            </div>
 
-        <div>
-          <input
-            className={css.loginInput}
-            type="password"
-            placeholder="Password:"
-            {...register("password")}
-          />
-          {errors.password && (
-            <div className="error">{errors.password.message}</div>
-          )}
-        </div>
+            <div>
+              <Field
+                className={css.loginInput}
+                type="password"
+                name="password"
+                placeholder="Password:"
+              />
+              <ErrorMessage name="password" component="div" className="error" />
+            </div>
 
-        <div className={css.containerLoginBtn}>
-          <button className={css.loginBtn} type="submit">
-            Log in
-          </button>
-          <NavLink className={css.toRegisterLink} to="/register">
-            Don’t have an account?
-          </NavLink>
-        </div>
-      </form>
+            <div className={css.containerLoginBtn}>
+              <button
+                className={css.loginBtn}
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Logging in..." : "Log in"}
+              </button>
+              <NavLink className={css.toRegisterLink} to="/register">
+                Don’t have an account?
+              </NavLink>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
