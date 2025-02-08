@@ -1,6 +1,39 @@
 @media screen and (min-width: 1440px) {
   .containerHome {
     display: flex;
+    gap: 16px;
     margin-top: 16px;
+  }
+
+  .containerRecommended {
+    width: 100%;
+    background-color: #1f1f1f;
+    padding: 40px;
+    border-radius: 30px;
+  }
+
+  .containerPagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .recommendedTitle {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: 0.02em;
+  }
+
+  .pagnationList {
+    display: flex;
+    gap: 8px;
+  }
+
+  .pagnationButton {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    border-radius: 50px;
   }
 }
