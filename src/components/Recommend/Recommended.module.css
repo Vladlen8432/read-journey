@@ -1,3 +1,62 @@
+.containerRecommended {
+  background-color: #1f1f1f;
+  padding: 40px 20px;
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+.containerPagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paginationList {
+  display: flex;
+  gap: 8px;
+}
+
+.paginationButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 50px;
+}
+
+.booksList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.bookListItem {
+  width: calc((100% - 21px) / 2);
+}
+
+.bookImg {
+  width: 100%;
+  height: 208px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.bookTitle {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  margin-top: 8px;
+}
+
+.bookAuthor {
+  color: #686868;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
 @media screen and (min-width: 1440px) {
   .containerHome {
     display: flex;
@@ -25,15 +84,13 @@
     letter-spacing: 0.02em;
   }
 
-  .pagnationList {
+  .paginationList {
     display: flex;
     gap: 8px;
   }
 
-  .pagnationButton {
+  .paginationButton {
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(249, 249, 249, 0.2);
-    border-radius: 50px;
   }
 }

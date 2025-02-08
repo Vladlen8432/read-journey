@@ -10,6 +10,25 @@ const Recommended = () => {
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+
+  useEffect(() => {
+    const updatePerPage = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setPerPage(2);
+      } else if (width < 1024) {
+        setPerPage(8);
+      } else {
+        setPerPage(10);
+      }
+    };
+
+    updatePerPage();
+    window.addEventListener("resize", updatePerPage);
+
+    return () => window.removeEventListener("resize", updatePerPage);
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -18,28 +37,20 @@ const Recommended = () => {
       return;
     }
 
-    fetchRecommendedBooks(1, 10)
-      .then((data) => console.log(data))
+    fetchRecommendedBooks(page, perPage)
+      .then(({ results, totalPages }) => {
+        setBooks(results);
+        setTotalPages(totalPages);
+      })
       .catch((error) => {
         if (error.response?.status === 401) {
           localStorage.removeItem("token");
           navigate("/login");
+        } else {
+          console.error("Error during fetching recommended books:", error);
         }
       });
-  }, [navigate]);
-
-  useEffect(() => {
-    const loadBooks = async () => {
-      try {
-        const data = await fetchRecommendedBooks(page);
-        setBooks(data.results);
-        setTotalPages(totalPages);
-      } catch (error) {
-        console.error("Error during fetching recommended books:", error);
-      }
-    };
-    loadBooks();
-  });
+  }, [page, perPage, navigate]);
 
   return (
     <div className={css.containerHome}>
@@ -47,19 +58,19 @@ const Recommended = () => {
       <div className={css.containerRecommended}>
         <div className={css.containerPagination}>
           <h3 className={css.recommendedTitle}>Recommended</h3>
-          <ul className={css.pagnationList}>
-            <li className={css.pagnationListItem}>
+          <ul className={css.paginationList}>
+            <li className={css.paginationListItem}>
               <button
-                className={css.pagnationButton}
+                className={css.paginationButton}
                 onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                 disabled={page === 1}
               >
                 L
               </button>
             </li>
-            <li className={css.pagnationListItem}>
+            <li className={css.paginationListItem}>
               <button
-                className={css.pagnationButton}
+                className={css.paginationButton}
                 onClick={() =>
                   setPage((prev) => Math.min(prev + 1, totalPages))
                 }
@@ -71,12 +82,12 @@ const Recommended = () => {
           </ul>
         </div>
 
-        <ul className={css.recommendedList}>
-          {books?.length > 0 ? (
+        <ul className={css.booksList}>
+          {books.length > 0 ? (
             books.map((book) => (
-              <li key={book._id} className={css.recommendedListItem}>
+              <li key={book._id} className={css.bookListItem}>
                 <img
-                  className={css.recommendedImg}
+                  className={css.bookImg}
                   src={book.imageUrl}
                   alt={book.title}
                 />
