@@ -103,6 +103,7 @@
     background-color: #1f1f1f;
     padding: 40px;
     border-radius: 30px;
+    margin-top: 0;
   }
 
   .containerPagination {
@@ -126,5 +127,9 @@
   .paginationButton {
     width: 40px;
     height: 40px;
+  }
+
+  .bookListItem {
+    width: calc((100% - 80px) / 5);
   }
 }
