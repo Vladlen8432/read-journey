@@ -20,7 +20,7 @@ const Recommended = () => {
       } else if (width < 1024) {
         setPerPage(8);
       } else {
-        setPerPage(10);
+        setPerPage(12);
       }
     };
 

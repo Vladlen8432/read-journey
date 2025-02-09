@@ -8,6 +8,13 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "LOGIN":
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+        isAuthenticated: true,
+      };
     case LOGOUT:
       return {
         ...state,

@@ -130,6 +130,6 @@
   }
 
   .bookListItem {
-    width: calc((100% - 80px) / 5);
+    width: calc((100% - 100px) / 6);
   }
 }
