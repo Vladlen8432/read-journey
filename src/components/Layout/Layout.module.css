@@ -99,6 +99,7 @@
   .containerMainLogo {
     display: flex;
     gap: 4px;
+    color: inherit;
   }
 
   .mainLogoText {
