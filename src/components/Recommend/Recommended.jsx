@@ -17,7 +17,7 @@ const Recommended = () => {
       const width = window.innerWidth;
       if (width < 768) {
         setPerPage(2);
-      } else if (width < 1024) {
+      } else if (width < 1440) {
         setPerPage(8);
       } else {
         setPerPage(12);
