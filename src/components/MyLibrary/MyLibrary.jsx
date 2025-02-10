@@ -1,5 +1,9 @@
+import Dashboard from "../Dashboard/Dashboard";
+
 const MyLibrary = () => {
-  return <div>MyLibrary</div>;
+  return <div>
+    <Dashboard/>
+  </div>;
 };
 
 export default MyLibrary;

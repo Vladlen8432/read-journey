@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/auth/authActions";
@@ -7,11 +7,13 @@ import { fetchCurrentUser } from "../../services/api";
 
 import { BurgerMenuIcon, MainLogoIcon } from "../Icons";
 import css from "./Layout.module.css";
+import Modal from "../Modal/Modal";
 
 export const Layout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(selectUser);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -27,8 +29,6 @@ export const Layout = () => {
 
     loadUser();
   }, [dispatch]);
-
-  console.log("user in Layout:", user);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -86,7 +86,11 @@ export const Layout = () => {
             Log out
           </button>
 
-          <button className={css.buttonBurger} type="button">
+          <button
+            className={css.buttonBurger}
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+          >
             <BurgerMenuIcon />
           </button>
         </div>
@@ -95,6 +99,8 @@ export const Layout = () => {
       <main>
         <Outlet />
       </main>
+
+      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
