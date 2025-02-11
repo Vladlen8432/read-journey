@@ -1,0 +1,11 @@
+.myLibrary {
+    background-color: #1f1f1f;
+    padding: 40px 20px 100px 20px;
+    border-radius: 30px;
+    margin-top: 10px;
+}
+
+.containerTitleDropdown {
+    display: flex;
+    justify-content: space-between;
+}

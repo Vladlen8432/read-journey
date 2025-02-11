@@ -39,15 +39,9 @@ const RecommendedBooks = () => {
       <ul className={css.recommendedBooksList}>
         {books.map((book) => (
           <li key={book._id} className={css.recommendedBooksItem}>
-            <div className={css.booksContainerInfo}>
-              <img
-                className={css.bookImg}
-                src={book.imageUrl}
-                alt={book.title}
-              />
-              <h4 className={css.bookTitle}>{book.title}</h4>
-              <p className={css.bookAuthor}>{book.author}</p>
-            </div>
+            <img className={css.bookImg} src={book.imageUrl} alt={book.title} />
+            <h4 className={css.bookTitle}>{book.title}</h4>
+            <p className={css.bookAuthor}>{book.author}</p>
           </li>
         ))}
       </ul>
