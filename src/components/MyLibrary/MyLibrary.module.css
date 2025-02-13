@@ -10,6 +10,10 @@
   justify-content: space-between;
 }
 
+.addedBooksItem {
+  width: calc((100% - 20px) / 2);
+}
+
 .subcontainerBooks {
   display: flex;
   align-items: center;
@@ -21,11 +25,6 @@
   margin-right: auto;
   margin-left: auto;
   margin-top: 63px;
-}
-
-.booksImg {
-  width: 50px;
-  height: auto;
 }
 
 .booksText {
@@ -46,17 +45,24 @@
 
 .addedBooksList {
   display: flex;
+  justify-content: space-between;
   margin-top: 24px;
 }
 
 .containerBookInfo {
+  margin-top: 8px;
   display: flex;
   gap: 14px;
 }
 
+.bookImg {
+  width: 100%;
+  height: 208px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
 .bookInfoTitle {
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.29;
@@ -80,6 +86,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -98,6 +105,17 @@
 
   .containerBooks {
     margin-top: 86px;
+  }
+
+  .addedBooksList {
+    margin-top: 28px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: calc((100% - 137px * 4) / 3);
+  }
+
+  .addedBooksItem {
+    width: 137px;
   }
 
   .subcontainerBooks {
@@ -130,5 +148,9 @@
 
   .containerBooks {
     margin-top: 147px;
+  }
+
+  .addedBooksList {
+    gap: calc((100% - 137px * 6) / 5);
   }
 }

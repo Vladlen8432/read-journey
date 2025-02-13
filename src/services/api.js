@@ -51,7 +51,10 @@ export const fetchCurrentUser = async () => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching current user:", error.response?.data || error.message)
+    console.error(
+      "Error fetching current user:",
+      error.response?.data || error.message
+    );
     throw error;
   }
 };
@@ -78,3 +81,56 @@ export const fetchRecommendedBooks = async (page, limit) => {
     throw error;
   }
 };
+
+export const addBookToLibrary = async (id) => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    throw new Error("No token found");
+  }
+
+  if (!id) {
+    throw new Error("Book ID is missing");
+  }
+
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/books/add/${id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error adding book to library:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
+// export const addBookToLibrary = async (id) => {
+//   const token = localStorage.getItem("token");
+//   if (!token) {
+//     throw new Error("No token found");
+//   }
+
+//   try {
+//     const response = await axios.post(`${BASE_URL}/books/add/${id}`, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error(
+//       "Error adding book to library:",
+//       error.response?.data || error.message
+//     );
+//     throw error;
+//   }
+// };
