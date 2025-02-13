@@ -15,7 +15,11 @@ const Dashboard = () => {
       {location.pathname === "/library" && <FilterFormLibrary />}
       {location.pathname === "/" && <FunctionalDescription />}
       {location.pathname === "/library" && <RecommendedBooks />}
-      <Slogan />
+
+      {location.pathname === "/" && <Slogan style={{ display: "block" }} />}
+      {location.pathname === "/recommended" && (
+        <Slogan style={{ display: "none" }} />
+      )}
     </div>
   );
 };

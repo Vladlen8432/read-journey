@@ -317,7 +317,8 @@ export const BurgerMenuIcon = () => {
   );
 };
 
-export const CloseBtnIcon = () => {
+// eslint-disable-next-line react/prop-types
+export const CloseBtnIcon = ({ className }) => {
   return (
     <div>
       <svg
@@ -326,6 +327,7 @@ export const CloseBtnIcon = () => {
         height="28"
         viewBox="0 0 28 28"
         fill="none"
+        className={className}
       >
         <path
           d="M21 7L7 21"

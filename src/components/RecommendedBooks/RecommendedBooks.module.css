@@ -79,3 +79,9 @@
     line-height: 1.29;
   }
 }
+
+@media screen and (min-width: 1440px) {
+  .containerRecommendedBooks {
+    width: 100%;
+  }
+}

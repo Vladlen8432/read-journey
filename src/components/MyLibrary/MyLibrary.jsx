@@ -2,7 +2,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import { Dropdown } from "../Dropdown/Dropdown";
 import books from "../../assets/images/books@2x.png";
 import css from "./MyLibrary.module.css";
-import { DeleteBtnIcon } from "../Icons";
+// import { DeleteBtnIcon } from "../Icons";
 
 const MyLibrary = () => {
   return (
@@ -29,7 +29,7 @@ const MyLibrary = () => {
           </p>
         </div>
 
-        <ul className={css.addedBooksList}>
+        {/* <ul className={css.addedBooksList}>
           <li className={css.addedBooksItem}>
             <img src="" alt="book" />
             <div className={css.containerBookInfo}>
@@ -43,7 +43,7 @@ const MyLibrary = () => {
               </button>
             </div>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

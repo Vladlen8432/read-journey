@@ -89,7 +89,6 @@
     width: calc((100% - 75px) / 4);
     cursor: pointer;
   }
-  
 }
 
 @media screen and (min-width: 1440px) {
