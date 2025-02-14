@@ -1,0 +1,85 @@
+.startReadingOverlay {
+  position: static;
+  width: 100%;
+  height: auto;
+}
+
+.startReadingModal {
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 100%;
+  height: auto;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  padding: 50px 92px;
+}
+
+.bookImg {
+  width: 153px;
+  height: 233px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.bookTitle {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.bookAuthor {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
+  color: #686868;
+}
+
+.pages {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.startReadingBtn {
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  padding: 14px 22px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.13;
+  letter-spacing: 0.02em;
+  margin-top: 32px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.closeIcon {
+  width: 22px;
+  height: 22px;
+}
+
+@media screen and (min-width: 768px) {
+  .startReadingModal {
+    width: 500px;
+    height: auto;
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    padding: 50px 92px;
+    right: 50%;
+    transform: translateX(25%);
+  }
+}
