@@ -1,8 +1,9 @@
+import { useSelector, useDispatch } from "react-redux";
 import Dashboard from "../Dashboard/Dashboard";
 import { Dropdown } from "../Dropdown/Dropdown";
+import booksImg from "../../assets/images/books@2x.png";
 import css from "./MyLibrary.module.css";
 import { DeleteBtnIcon } from "../Icons";
-import { useSelector, useDispatch } from "react-redux";
 import { removeBook } from "../../redux/books/booksSlice";
 
 const MyLibrary = () => {
@@ -22,7 +23,16 @@ const MyLibrary = () => {
 
         <ul className={css.addedBooksList}>
           {books.length === 0 ? (
-            <p>No books added yet.</p>
+            <div className={css.containerEmptyLibrary}>
+              <div className={css.subcontainerBooks}>
+                <img className={css.booksImg} src={booksImg} alt="books" />
+              </div>
+              <p className={css.booksText}>
+                To start training, add{" "}
+                <span className={css.booksTextSpan}>some of your books </span>or
+                from the recommended ones
+              </p>
+            </div>
           ) : (
             books.map((book) => (
               <li key={book._id} className={css.addedBooksItem}>
